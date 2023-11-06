@@ -27,7 +27,7 @@ def calculator():
     return #스택을 이용한 결과 값
 
 def main():
-    #입력값(정상,오류)이 저장될 스택 클래스 선언
+    #입력값(정상,오류)이 저장될 스택 객체 선언
     myStack = Stack()
     myErrorStack = ErrorStack()
     while True:
