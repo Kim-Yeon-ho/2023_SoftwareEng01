@@ -28,8 +28,8 @@ def calculator():
 
 def main():
     #입력값(정상,오류)이 저장될 스택 클래스 선언
-    Stack = myStack
-    ErrorStack = myErrorStack
+    myStack = Stack()
+    myErrorStack = ErrorStack()
     while True:
         entry = input("숫자 혹은 연산자를 입력하세요: ") #entry변수로 사용자 입력을 저장
         
