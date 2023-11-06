@@ -18,31 +18,34 @@ class ErrorStack(): #에러 입력값을 저장하는 Stack 클래스 입니다.
         return
 
 def isDivision():
-    return #isError값 수정
+    return #isError값 수정하고 불 반환
 
 def isInteger():
-    return #isError값 수정
+    return #isError값 수정하고 불 반환
 
 def calculator():
     return #스택을 이용한 결과 값
 
-def Main():
+def main():
+    #입력값(정상,오류)이 저장될 스택 클래스 선언
+    Stack = myStack
+    ErrorStack = myErrorStack
     while True:
-        entry = input("숫자 혹은 연산자를 입력하세요: ")
-        Stack = myStack
-        Stack = myErrorStack
+        entry = input("숫자 혹은 연산자를 입력하세요: ") #entry변수로 사용자 입력을 저장
         
-        
-        if entry=='=':
+        if entry=='=': #entry가 '=' 이라면 해당 값 출력
             if not isError:
                 calculator()
-                    #이스터에그 처리
+                    #이스터에그 출력 코드 작성해주세요
             else:
                 print("= ERROR!")
-        if isDivision(entry)&isInteger(entry):
+
+        if isDivision(entry) and isInteger(entry): #enty가 나눗셈이 아니고 정수라면
             myStack.insert(entry)
         else:
-            myErrorStack.insert(entry)
-        
+            myErrorStack.insert(entry) #entry가 에러처리 조건이라면
+
+if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
+    main()
         
         
