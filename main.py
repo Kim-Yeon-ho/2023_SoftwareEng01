@@ -12,11 +12,7 @@ isError = False #ERROR 출력을 결정하는 변수입니다.
 class Stack(): #정상 입력값을 저장하는 Stack 클래스 입니다.
     def insert(enrty):
         return
-
-class ErrorStack(): #에러 입력값을 저장하는 Stack 클래스 입니다.
-    def insert(enrty):
-        return
-
+    
 def isDivision():
     return #isError값 수정하고 불 반환
 
@@ -29,21 +25,18 @@ def calculator():
 def main():
     #입력값(정상,오류)이 저장될 스택 객체 선언
     myStack = Stack()
-    myErrorStack = ErrorStack()
+
     while True:
-        entry = input("숫자 혹은 연산자를 입력하세요: ") #entry변수로 사용자 입력을 저장
-        
-        if entry=='=': #entry가 '=' 이라면 해당 값 출력
+        try:
+            entry = int(input("숫자 혹은 연산자를 입력하세요: ")) #entry변수로 사용자 입력을 저장
+        except ValueError: #이 부분에서 isDivision, isInteger함수를 사용할 수 있습니다!
+
+        if entry =='=': #entry가 '=' 이라면 해당 값 출력
             if not isError:
                 calculator()
                     #이스터에그 출력 코드 작성해주세요
             else:
                 print("= ERROR!")
-
-        if isDivision(entry) and isInteger(entry): #enty가 나눗셈이 아니고 정수라면
-            myStack.insert(entry)
-        else:
-            myErrorStack.insert(entry) #entry가 에러처리 조건이라면
 
 if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
     main()
