@@ -17,7 +17,7 @@ class Stack():                      #Stack 클래스 생성
         if self.isEmpty():         #스택이 비어있으면 False, 있으면 반환
             return False
         else:
-            popOjbect = self.stack.pop()
+            popObject = self.stack.pop()
         
         return popObject
     
