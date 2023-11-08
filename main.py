@@ -9,9 +9,37 @@
 
 isError = False #ERROR 출력을 결정하는 변수입니다.
 
-class Stack(): #정상 입력값을 저장하는 Stack 클래스 입니다.
-    def insert(enrty):
-        return
+class Stack():                      #Stack 클래스 생성
+    def __init__(self):             #클래스 초기화
+        self.stack = []
+    
+    def push(self, data):           #스택에 데이터 추가
+        self.stack.append(data)     
+    
+    def pop(self):                  #스택에서 데이터 반환
+        popObject = None
+        if self.isEmpty():         #스택이 비어있으면 False, 있으면 반환
+            return False
+        else:
+            popObject = self.stack.pop()
+        
+        return popObject
+    
+    def top(self):                  #스택의 가장 위에 있는 데이터 반환
+        topObject = None
+        if self.isEmpty():          #스택 최상단이 비어있으면 False, 있으면 반환
+            return False
+        else:
+            topObject = self.stack[-1]
+        
+        return topObject 
+    
+    def isEmpty(self):              #스택이 비어있으면 True, 채워져있으면 False
+        isEmpty = False
+        if len(self.stack) == 0:
+            isEmpty = True
+        
+        return isEmpty
     
 def isDivision():
     return #isError값 수정하고 불 반환
@@ -29,7 +57,11 @@ def main():
     while True:
         try:
             entry = int(input("숫자 혹은 연산자를 입력하세요: ")) #entry변수로 사용자 입력을 저장
-        except ValueError: #이 부분에서 isDivision, isInteger함수를 사용할 수 있습니다!
+            Stack.push(entry)
+        except ValueError: 
+            {
+                #이 부분에서 isDivision, isInteger함수를 사용할 수 있습니다!
+            }
 
         if entry =='=': #entry가 '=' 이라면 해당 값 출력
             if not isError:
@@ -42,3 +74,4 @@ if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
     main()
         
         
+
