@@ -51,27 +51,26 @@ def calculator():
     return #스택을 이용한 결과 값
 
 def main():
-    #입력값(정상,오류)이 저장될 스택 객체 선언
-    myStack = Stack()
+    myStack = Stack() #입력값(정상,오류)이 저장될 스택 객체 선언
 
     while True:
-        try:
-            entry = int(input("숫자 혹은 연산자를 입력하세요: ")) #entry변수로 사용자 입력을 저장
-            Stack.push(entry)
-        except ValueError: 
-            {
-                #이 부분에서 isDivision, isInteger함수를 사용할 수 있습니다!
-            }
-
-        if entry =='=': #entry가 '=' 이라면 해당 값 출력
+        inputInt = input() #정수 입력
+        if(not isInteger()):
+            myStack.push(inputInt)
+        
+        inputStr = input() #연산기호 입력 
+        if(not isDivision()):
+            myStack.push(inputStr)
+        
+        if entry == '=': #entry가 '=' 이라면 결과 값 출력
             if not isError:
                 calculator()
+                break
                     #이스터에그 출력 코드 작성해주세요
+                    #break
             else:
                 print("= ERROR!")
+                break
 
 if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
     main()
-        
-        
-
