@@ -41,10 +41,10 @@ class Stack():                      #Stack 클래스 생성
         
         return isEmpty
     
-def isDivision(): #연산자가 나눗셈인지
+def isDivision(inputStr): #연산자가 나눗셈인지
     return 
 
-def isInteger(): #숫자가 정수인지
+def isInteger(inputInt): #숫자가 정수인지
     return 
 
 def calculator():
@@ -55,13 +55,13 @@ def main():
 
     while True:
         inputInt = input() #정수 입력
-        if(not isInteger()):
+        if(not isInteger(inputInt)):
             myStack.push(inputInt)
         else:
             isError = True
         
         inputStr = input() #연산기호 입력 
-        if(not isDivision()):
+        if(not isDivision(inputStr)):
             myStack.push(inputStr)
         else:
             isError = True
