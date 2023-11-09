@@ -50,14 +50,15 @@ def isInteger(inputInt): #숫자가 정수인지
 def calculator():
     return #스택을 이용한 결과 값
 
-def isEqual(input):
-    if input == '=': #entry가 '=' 이라면 결과 값 출력
+def isEqual(input): #등호가 입력되면 계산 결과 출력
+    if input == '=': #input이 '=' 이라면 결과 값 출력
                 if not isError:
                     calculator()
+                    exit(0)
                         #이스터에그 출력 코드 작성해주세요
-                        #break
                 else:
                     print("= ERROR!")
+                    exit(0)
     return None
 
 def main():
@@ -77,8 +78,7 @@ def main():
             myStack.push(inputStr)
         else:
             isError = True
+            isEqual(inputStr)
         
-        
-
 if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
     main()
