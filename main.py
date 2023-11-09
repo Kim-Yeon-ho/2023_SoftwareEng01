@@ -66,7 +66,7 @@ def main():
         else:
             isError = True
         
-        if entry == '=': #entry가 '=' 이라면 결과 값 출력
+        if inputStr == '=': #entry가 '=' 이라면 결과 값 출력
             if not isError:
                 calculator()
                 break
