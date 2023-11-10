@@ -1,10 +1,3 @@
-# 1. 스택 코드 짜기
-# 2. 메인 입력 코드 짜기
-# 3. 계산기 코드 짜기
-# 4. 예외처리
-# 5. 예외처리
-# 6. 이스터에그
-
 class Stack():                      #Stack 클래스 생성
     def __init__(self):             #클래스 초기화
         self.stack = []
@@ -36,3 +29,19 @@ class Stack():                      #Stack 클래스 생성
             isEmpty = True
         
         return isEmpty
+
+def calculator(Objtest):
+    
+    stack = Objtest
+    postList = []
+    opStack = Stack()
+    
+    prior = {'*':2, '+':1, '-':1}
+    
+    for i in range(len(stack)):
+        if stack[i].isdigit():
+            postList.append(stack[i])
+        else:
+            while (not opStack.isEmpty() and prior[opStack.top()] >= prior[stack[i]]):
+                postList.append(opStack.pop())
+            
