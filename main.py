@@ -47,7 +47,7 @@ def isDivision(inputStr): #연산자가 나눗셈인지
 def isInteger(inputInt): #숫자가 정수인지
     return 
 
-def easterEgg() #이스터에그 출력 함수
+def easterEgg(): #이스터에그 출력 함수
     return
 
 def calculator():
