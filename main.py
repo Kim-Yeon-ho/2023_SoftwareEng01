@@ -28,6 +28,7 @@ class Stack():                      #Stack 클래스 생성
         if len(self.stack) == 0:
             isEmpty = True
         
+<<<<<<< HEAD
         return isEmpty
 
 def calculator(Objtest):
