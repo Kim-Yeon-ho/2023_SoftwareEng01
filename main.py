@@ -33,14 +33,12 @@ class Stack():                      #Stack 클래스 생성
     def reverses(self):
         self.stack.reverse()
 
-def calculator(Objtest):
-    
-    stack = Objtest # 스택을 매개변수로 입력받음 
-    stack.reverses() # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
-    
-    formula = "" #eval함수 사용을 위해 string값으로 선언
-    
-    for i in range(len(stack)):
-        formula = formula + str(stack.pop())
-    
+def calculator(lst):
+    lst.reverses()  # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
+
+    formula = ""  # eval함수 사용을 위해 string값으로 선언
+
+    while lst.isEmpty() == 0:
+        formula = formula + str(lst.pop())
+
     return eval(formula)
