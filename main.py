@@ -28,7 +28,6 @@ class Stack():                      #Stack 클래스 생성
         if len(self.stack) == 0:
             isEmpty = True
         
-<<<<<<< HEAD
         return isEmpty
     #reverses 함수 추가를 위해 추가함
     def reverses(self):
