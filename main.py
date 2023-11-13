@@ -1,14 +1,3 @@
-# 1. 스택 코드 짜기
-# 3. 계산기 코드 짜기
-# 4. 예외처리
-# 5. 예외처리
-# 6. 이스터에그
-
-#메인함수에 사용될 사용자 정의 함수들의 이름을 간략하게 지었습니다.
-#고쳐쓰시면 됩니다!!!
-
-isError = False #ERROR 출력을 결정하는 변수입니다.
-
 class Stack():                      #Stack 클래스 생성
     def __init__(self):             #클래스 초기화
         self.stack = []
@@ -40,6 +29,20 @@ class Stack():                      #Stack 클래스 생성
             isEmpty = True
         
         return isEmpty
+
+    #reverses 함수 추가를 위해 추가함
+    def reverses(self):
+        self.stack.reverse()
+
+def calculator(lst):
+    lst.reverses()  # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
+
+    formula = ""  # eval함수 사용을 위해 string값으로 선언
+
+    while lst.isEmpty() == 0:
+        formula = formula + str(lst.pop())
+
+    return eval(formula)
     
 def isDivision(inputStr): #연산자가 나눗셈인지
     return 
