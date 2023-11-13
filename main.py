@@ -5,34 +5,35 @@
 # 5. 예외처리
 # 6. 이스터에그
 
-class Stack():                      #Stack 클래스 생성
-    def __init__(self):             #클래스 초기화
-        self.stack = []
-    
-    def push(self, data):           #스택에 데이터 추가
-        self.stack.append(data)     
-    
-    def pop(self):                  #스택에서 데이터 반환
-        popObject = None
-        if self.isEmpty():         #스택이 비어있으면 False, 있으면 반환
-            return False
+isError = False #ERROR 출력을 결정하는 변수입니다.
+
+def isDivision(userInput):
+     # 나눗셈 예외처리 필요
+     return False
+
+def isInteger(inputInt):         # 숫자가 정수인지 판별하는 함수
+     try:
+         num = int(inputInt)
+         return True             # 매개변수가 정수로 변환되면 True
+     except ValueError:
+         return False            # 변환되지 않으면 정수가 아니므로 False
+         
+def main():
+    myStack = Stack()            # 스택 함수 구현 필요
+
+    while True:
+        inputInt = input()       # 정수 입력
+        if(isInteger(inputInt)):
+            myStack.push(inputInt)
         else:
-            popObject = self.stack.pop()
+            isError = True
+            isEqual(inputInt)    #"3 + =" ERROR처리
         
-        return popObject
-    
-    def top(self):                  #스택의 가장 위에 있는 데이터 반환
-        topObject = None
-        if self.isEmpty():          #스택 최상단이 비어있으면 False, 있으면 반환
-            return False
+        inputStr = input()       # 연산기호 입력
+        if(not isDivision(inputStr)):
+            isEqual(inputStr)
+            myStack.push(inputStr)
         else:
-            topObject = self.stack[-1]
+            isError = True
         
-        return topObject 
-    
-    def isEmpty(self):              #스택이 비어있으면 True, 채워져있으면 False
-        isEmpty = False
-        if len(self.stack) == 0:
-            isEmpty = True
-        
-        return isEmpty
+if __name__ == "__main__":
