@@ -53,10 +53,10 @@ def easterEgg(): #이스터에그 출력 함수
 def calculator():
     return #스택을 이용한 결과 값
 
-def isEqual(input): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
+def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
     if input == '=': #input이 '=' 이라면 결과 값 출력
                 if not isError:
-                    calculator() 
+                    print(calculator(lst))
                     easterEgg() #이스터에그 함수는 구현하시기 편한대로 바꾸시면 됩니다
                     exit(0)
                 else:
@@ -70,14 +70,14 @@ def main():
     while True:
         inputInt = input() #정수 입력
         if(isInteger(inputInt)):
-            myStack.push(inputInt)
+            myStack.push(int(inputInt))
         else:
             isError = True
-            isEqual(inputInt) #"3 + =" ERROR처리
+            isEqual(inputInt, myStack) #"3 + =" ERROR처리
         
         inputStr = input() #연산기호 입력 
         if(not isDivision(inputStr)):
-            isEqual(inputStr) #연산자 +, *, -, = 중 =이 입력됐다면 결과 출력 
+            isEqual(inputStr, myStack) #연산자 +, *, -, = 중 =이 입력됐다면 결과 출력 
             myStack.push(inputStr) 
         else:
             isError = True
