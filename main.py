@@ -29,6 +29,7 @@ class Stack():                      #Stack 클래스 생성
             isEmpty = True
         
         return isEmpty
+
     #reverses 함수 추가를 위해 추가함
     def reverses(self):
         self.stack.reverse()
@@ -42,3 +43,47 @@ def calculator(lst):
         formula = formula + str(lst.pop())
 
     return eval(formula)
+    
+def isDivision(inputStr): #연산자가 나눗셈인지
+    return 
+
+def isInteger(inputInt): #숫자가 정수인지
+    return 
+
+def easterEgg(): #이스터에그 출력 함수
+    return
+
+def calculator():
+    return #스택을 이용한 결과 값
+
+def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
+    if input == '=': #input이 '=' 이라면 결과 값 출력
+                if not isError:
+                    print(calculator(lst))
+                    easterEgg() #이스터에그 함수는 구현하시기 편한대로 바꾸시면 됩니다
+                    exit(0)
+                else:
+                    print("= ERROR!")
+                    exit(0)
+    return None
+
+def main():
+    myStack = Stack() #입력값(정상,오류)이 저장될 스택 객체 선언
+
+    while True:
+        inputInt = input() #정수 입력
+        if(isInteger(inputInt)):
+            myStack.push(int(inputInt))
+        else:
+            isError = True
+            isEqual(inputInt, myStack) #"3 + =" ERROR처리
+        
+        inputStr = input() #연산기호 입력 
+        if(not isDivision(inputStr)):
+            isEqual(inputStr, myStack) #연산자 +, *, -, = 중 =이 입력됐다면 결과 출력 
+            myStack.push(inputStr) 
+        else:
+            isError = True
+        
+if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
+    main()
