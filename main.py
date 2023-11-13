@@ -45,7 +45,11 @@ def calculator(lst):
     return eval(formula)
     
 def isDivision(inputStr): #연산자가 나눗셈인지
-    return 
+    if inputStr == "/":
+        # 입력된 연산자가 "/"이면 True 반환
+        return True
+    else:
+        return False
 
 def isInteger(inputInt): #숫자가 정수인지
     return 
