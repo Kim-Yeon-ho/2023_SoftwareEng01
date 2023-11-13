@@ -53,8 +53,7 @@ def isInteger(inputInt): #숫자가 정수인지
 def easterEgg(): #이스터에그 출력 함수
     return
 
-def calculator():
-    return #스택을 이용한 결과 값
+isError = False
 
 def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
     if input == '=': #input이 '=' 이라면 결과 값 출력
