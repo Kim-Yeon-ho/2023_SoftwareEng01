@@ -33,6 +33,8 @@ class Stack():                      #Stack 클래스 생성
     #reverses 함수 추가를 위해 추가함
     def reverses(self):
         self.stack.reverse()
+        
+isError = False #ERROR 출력을 결정하는 변수입니다.
 
 def calculator(lst):
     lst.reverses()  # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
@@ -51,8 +53,12 @@ def isDivision(inputStr): #연산자가 나눗셈인지
     else:
         return False
 
-def isInteger(inputInt): #숫자가 정수인지
-    return
+def isInteger(inputInt):         # 숫자가 정수인지 판별하는 함수
+     try:
+         num = int(inputInt)
+         return True             # 매개변수가 정수로 변환되면 True
+     except ValueError:
+         return False            # 변환되지 않으면 정수가 아니므로 False
 
 def easterEgg(): #이스터에그 출력 함수
     return
