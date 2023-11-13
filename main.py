@@ -47,19 +47,12 @@ def calculator(lst):
 def isDivision(inputStr): #연산자가 나눗셈인지
     if inputStr == "/":
         # 입력된 연산자가 "/"이면 True 반환
-        print("--isDiv--True--")
         return True
     else:
-        print("--isDiv--False--")
         return False
 
 def isInteger(inputInt): #숫자가 정수인지
-    try:
-        num = int(inputInt)
-        return True
-    except ValueError:
-        return False
-    return 
+    return
 
 def easterEgg(): #이스터에그 출력 함수
     return
@@ -67,7 +60,6 @@ def easterEgg(): #이스터에그 출력 함수
 def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
     if input == '=': #input이 '=' 이라면 결과 값 출력
                 if not isError:
-                    print("--isEqual--True--")
                     print(calculator(lst))
                     easterEgg() #이스터에그 함수는 구현하시기 편한대로 바꾸시면 됩니다
                     exit(0)
@@ -84,20 +76,16 @@ def main():
     while True:
         inputInt = input() #정수 입력
         if(isInteger(inputInt)):
-            print("--inputInt--True--")
             myStack.push(int(inputInt))
         else:
-            print("--inputInt--False--")
             isError = True
             isEqual(inputInt, myStack) #"3 + =" ERROR처리
         
         inputStr = input() #연산기호 입력 
         if(not isDivision(inputStr)):
-            print("--inputStr--True--")
             isEqual(inputStr, myStack) #연산자 +, *, -, = 중 =이 입력됐다면 결과 출력 
             myStack.push(inputStr) 
         else:
-            print("--inputStr--False--")
             isError = True
         
 if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
