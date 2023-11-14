@@ -33,6 +33,8 @@ class Stack():                      #Stack 클래스 생성
     #reverses 함수 추가를 위해 추가함
     def reverses(self):
         self.stack.reverse()
+        
+isError = False #ERROR 출력을 결정하는 변수입니다.
 
 def calculator(lst):
     lst.reverses()  # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
@@ -59,18 +61,15 @@ def isInteger(inputInt):         # 숫자가 정수인지 판별하는 함수
          return False            # 변환되지 않으면 정수가 아니므로 False
 
 def easterEgg(input): #이스터에그 출력 함수
-    easterEgginput = float(input)
     if easterEgginput == 52:
         print("This is EasterEgg")
-        exit()
+        exit(0)
     return True
 
 def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
     if input == '=': #input이 '=' 이라면 결과 값 출력
                 if not isError:
-                    c_re = calculator(lst) 
-                    easterEgg(c_re) #이스터에그 함수는 구현하시기 편한대로 바꾸시면 됩니다
-                    print(c_re)
+                    print(calculator(lst))
                     exit(0)
                 else:
                     print("ERROR!")
@@ -84,12 +83,12 @@ def main():
 
     while True:
         inputInt = input() #정수 입력
+        easterEgg(int(inputInt))
         if(isInteger(inputInt)):
             myStack.push(int(inputInt))
         else:
             isError = True
             isEqual(inputInt, myStack) #"3 + =" ERROR처리
-            
         
         inputStr = input() #연산기호 입력 
         if(not isDivision(inputStr)):
@@ -97,7 +96,6 @@ def main():
             myStack.push(inputStr) 
         else:
             isError = True
-            
         
 if __name__ == "__main__": #파이썬에서 main함수를 실행하는 코드
     main()
