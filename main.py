@@ -59,10 +59,9 @@ def isInteger(inputInt):         # 숫자가 정수인지 판별하는 함수
          return False            # 변환되지 않으면 정수가 아니므로 False
 
 def easterEgg(input): #이스터에그 출력 함수
-    if easterEgginput == 52:
+    if input == 52:
         print("This is EasterEgg")
         exit(0)
-    return True
 
 def isEqual(input, lst): #등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
     if input == '=': #input이 '=' 이라면 결과 값 출력
