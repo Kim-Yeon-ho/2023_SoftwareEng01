@@ -57,7 +57,7 @@ def isInteger(inputInt):                    # 숫자가 정수인지 판별하�
          return False                       # 변환되지 않으면 정수가 아니므로 False
 
 def easterEgg(input):                       # 이스터에그 출력 함수
-    if input == 5252:
+    if input == "5252":
         print("정종욱교수님을 총장으로!!")
         exit(0)
 
@@ -78,7 +78,7 @@ def main():
 
     while True:
         inputInt = input()                  # 정수 입력
-        easterEgg(int(inputInt))
+        easterEgg(inputInt)
         if(isInteger(inputInt)):
             myStack.push(int(inputInt))
         else:
