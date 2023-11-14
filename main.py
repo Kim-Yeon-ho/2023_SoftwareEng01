@@ -33,8 +33,6 @@ class Stack():                      #Stack 클래스 생성
     #reverses 함수 추가를 위해 추가함
     def reverses(self):
         self.stack.reverse()
-        
-isError = False #ERROR 출력을 결정하는 변수입니다.
 
 def calculator(lst):
     lst.reverses()  # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
