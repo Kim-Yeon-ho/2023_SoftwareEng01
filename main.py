@@ -1,96 +1,68 @@
-class Stack():                              # Stack 클래스 생성
-    def __init__(self):                     # 클래스 초기화
-        self.stack = []
-    
-    def push(self, data):                   # 스택에 데이터 추가
-        self.stack.append(data)     
-    
-    def pop(self):                          # 스택에서 데이터 반환
-        popObject = None
-        if self.isEmpty():                  # 스택이 비어있으면 False, 있으면 반환
-            return False
-        else: 
-            popObject = self.stack.pop()
-        
-        return popObject
-    
-    def top(self):                          # 스택의 가장 위에 있는 데이터 반환
-        topObject = None
-        if self.isEmpty():                  # 스택 최상단이 비어있으면 False, 있으면 반환
-            return False
-        else:
-            topObject = self.stack[-1]
-        
-        return topObject 
-    
-    def isEmpty(self):                      # 스택이 비어있으면 True, 채워져있으면 False
-        isEmpty = False
-        if len(self.stack) == 0:
-            isEmpty = True
-        
-        return isEmpty
-    
-    def reverses(self):                     # reverses 함수 추가를 위해 추가함
-        self.stack.reverse()
+# 입력을 계산하여 반환하는 함수
+def calculate(expression):
+    try:
+        return eval(expression)
+    except Exception as e:
+        return f"Error: {e}"
 
-def calculator(lst):
-    lst.reverses()                          # 입력받은 스택은 pop으로 꺼낼 시 역순으로 계산되므로 정방향 계산을 위해 reverse()함수사용
+# 입력 == "/"인지 판별하는 함수
+def isDivision(userInput):
+    # 입력 == "/"이면 True반환, 아니면 False 반환
+    return True if userInput == "/" else False
 
-    formula = ""                            # eval함수 사용을 위해 string값으로 선언
-
-    while lst.isEmpty() == 0:
-        formula = formula + str(lst.pop())
-
-    return eval(formula)
-    
-def isDivision(inputStr):                   # 연산자가 나눗셈인지
-    if inputStr == "/":                     # 입력된 연산자가 "/"이면 True 반환
+# 입력 == 실수형인지 판별하는 함수
+def isFloat(userInput):
+    try:
+        float(userInput)
         return True
-    else:
+    except ValueError:
         return False
 
-def isInteger(inputInt):                    # 숫자가 정수인지 판별하는 함수
-     try:
-         num = int(inputInt)
-         return True                        # 매개변수가 정수로 변환되면 True
-     except ValueError:
-         return False                       # 변환되지 않으면 정수가 아니므로 False
 
-def easterEgg(input):                       # 이스터에그 출력 함수
-    if input == "5252":
-        print("정종욱교수님을 총장으로!!")
-        exit(0)
+# 이스터에그 판별 후 string을 반환하는 함수
+# 반환된 string은 main에서 출력됨.
+def easterEgg(userInput):
+    if userInput == "5252":
+        return "정종욱 교수님을 총장으로"
+    elif userInput == "1015":
+        return "전북대 개교기념일입니다."
+    else:
+        return "Not App"
 
-def isEqual(input, lst):                    # 등호가 입력되면 계산 결과 출력(ERROR처리할게 생각보다 많아 따로 함수로 작성했습니다)
-    if input == '=':                        # input이 '=' 이라면 결과 값 출력
-        if not isError:
-            print(calculator(lst))
-            exit(0)
-        else:
-            print("ERROR!")
-            exit(0)
-    return None
 
 def main():
-    myStack = Stack()                       # 입력값(정상,오류)이 저장될 스택 객체 선언
-    global isError
-    isError = False
+    expression = ""
+    errorChecker = False
 
     while True:
-        inputInt = input()                  # 정수 입력
-        easterEgg(inputInt)
-        if(isInteger(inputInt)):
-            myStack.push(int(inputInt))
+        userInput = input().strip()
+        # 입력을 easterEgg에 대입하여 값으로 반환받음
+        # 즉, easterEggValue는 모종의 string
+        easterEggValue = easterEgg(userInput)
+
+        # 기존 isEqual함수 대체
+        # input == "="인 경우 처리
+        if userInput == "=":
+            # 에러에 해당하는 입력이 있었을 경우 Error출력
+            if errorChecker == True:
+                print("Error")
+            # 에러에 해당하는 입력이 없었다면 값 계산 후 출력
+            # 출력한 후 break
+            else:
+                result = calculate(expression)
+                print(f"{result}")
+                break
+        # 입력이 이스터에그에 해당하는지 확인
+        # 분기문 진입 조건은 입력값이 easterEgg에 해당할 때
+        # 즉, 입력값이 이스터에그에 해당하지 않는 경우가 아닐 때
+        elif easterEggValue != "Not App":
+            print(f"{easterEggValue}")
+            break
+        # 입력이 float이거나, division이면 에러 체크
+        elif isFloat(userInput) or isDivision(userInput):
+            errorChecker = True
         else:
-            isError = True
-            isEqual(inputInt, myStack)      # "3 + =" ERROR처리
-        
-        inputStr = input()                  # 연산기호 입력 
-        if(not isDivision(inputStr)):
-            isEqual(inputStr, myStack)      # 연산자 +, *, -, = 중 =이 입력됐다면 결과 출력 
-            myStack.push(inputStr) 
-        else:
-            isError = True
-        
-if __name__ == "__main__":                  # 파이썬에서 main함수를 실행하는 코드
+            expression += userInput
+
+if __name__ == "__main__":
     main()
