@@ -19,7 +19,6 @@ def isFloat(userInput):
         except ValueError:
             return False
     return False
-    
 
 def easterEgg(userInput):
     if userInput == "5252":
@@ -35,16 +34,19 @@ def main():
     errorChecker = False
     compare = 0     #피연산자와 연산사 가려주는 변수
 
+
     while True:
         userInput = input().strip()
         easterEggValue = easterEgg(userInput)
         compare+=1
+
 
         if userInput == "=":
             # 주석해제하여 체크 / print(f"exp: {expression}\nerrChecker: {errorChecker}")
             if errorChecker == True:
                 print("[SYSTEM] \"Error!\"")
                 break
+
             else:
                 result = calculate(expression)
                 print(f"{result}")
@@ -67,3 +69,4 @@ def main():
             # 주석해제하여 체크 / print(f"after add: {expression}")
 if __name__ == "__main__":
     main()
+
