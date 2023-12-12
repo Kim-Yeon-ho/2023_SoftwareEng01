@@ -1,3 +1,43 @@
+import unittest
+
+class TestOperation(unittest.TestCase):
+    def testAdditionCase(self):
+        self.assertEqual(isDivision("+"), False)
+    
+    def testSubtractionCase(self):
+        self.assertEqual(isDivision("-"), False)
+    
+    def testMultiplicationCase(self):
+        self.assertEqual(isDivision("*"), False)
+
+    def testDivisionCase(self):
+        self.assertEqual(isDivision("/"), True)
+
+class TestNumber(unittest.TestCase):
+    def testInteger(self):
+        self.assertEqual(isFloat("10"), False)
+    
+    def testFloat(self):
+        self.assertEqual(isFloat("10.52"), True)
+
+class TestCalculate(unittest.TestCase):
+    def testAdditionCase(self):
+        self.assertEqual(calculate("1+2"), 3)
+    
+    def testSubtractionCase(self):
+        self.assertEqual(calculate("120-2"), 118)
+    
+    def testMultiplicationCase(self):
+        self.assertEqual(calculate("16*4"), 64)
+
+class TestEasterEgg(unittest.TestCase):
+    def test5252(self):
+        self.assertEqual(easterEgg("5252"), "정종욱 교수님을 총장으로")
+    
+    def test1015(self):
+        self.assertEqual(easterEgg("1015"), "전북대 개교기념일입니다.")
+
+
 def calculate(expression):
     try:
         return eval(expression)
@@ -68,5 +108,5 @@ def main():
             expression += userInput
             # 주석해제하여 체크 / print(f"after add: {expression}")
 if __name__ == "__main__":
-    main()
-
+    unittest.main(exit=False)
+    #main()
