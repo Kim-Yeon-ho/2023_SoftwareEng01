@@ -1,3 +1,6 @@
+import math
+import unittest
+
 def calculate(expression):
     try:
         return eval(expression)
@@ -28,18 +31,38 @@ def easterEgg(userInput):
     else:
         return "Not App"
 
+def factorial(expression):
+    if len(str(expression).split()) > 1:
+        return "[ERROR] Input Error"
+    expressionStriped = expression.strip()
+    if not str(expressionStriped).isdigit():
+        return "[ERROR] Out Of Range"
+    return "=" + str(math.factorial(int(expressionStriped)))
+
+class TestFactorialFunction(unittest.TestCase):
+    def testMultiple(self):
+        self.assertEqual(factorial("3 3"),"[ERROR] Input Error")
+        self.assertEqual(factorial("4 4 4"),"[ERROR] Input Error")
+    def testPositive(self):
+        self.assertEqual(factorial('5'),"=120")
+    def testZero(self):
+        self.assertEqual(factorial('0'),"=1")
+    def testNegative(self):
+        self.assertEqual(factorial('-1'),"[ERROR] Out Of Range")
+    def testNoneInteger(self):
+       self.assertEqual(factorial('+'),"[ERROR] Out Of Range")
+       self.assertEqual(factorial('a'),"[ERROR] Out Of Range")
+       self.assertEqual(factorial('0.1'),"[ERROR] Out Of Range")
 
 def main():
     expression = ""
     errorChecker = False
     compare = 0     #피연산자와 연산사 가려주는 변수
 
-
     while True:
         userInput = input().strip()
         easterEggValue = easterEgg(userInput)
         compare+=1
-
 
         if userInput == "=":
             # 주석해제하여 체크 / print(f"exp: {expression}\nerrChecker: {errorChecker}")
@@ -54,7 +77,11 @@ def main():
         elif easterEggValue != "Not App":
             print(f"[EVENT] \"{easterEggValue}\"")
             break
-    
+        if userInput == "!":
+            print(factorial(expression))
+            
+            break
+
         #elif isFloat(userInput) or isDivision(userInput):
         #   errorChecker = True
         else:
@@ -65,8 +92,8 @@ def main():
                 if isDivision(userInput):
                     errorChecker = True
             # 주석해제하여 체크 / print(f"before add: {expression}")
-            expression += userInput
+            expression += userInput + " "  
             # 주석해제하여 체크 / print(f"after add: {expression}")
 if __name__ == "__main__":
-    main()
-
+    unittest.main()
+    #main()
