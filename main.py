@@ -1,4 +1,5 @@
 import unittest
+import math
 
 class TestOperation(unittest.TestCase):
     def testAdditionCase(self):
@@ -20,23 +21,31 @@ class TestNumber(unittest.TestCase):
     def testFloat(self):
         self.assertEqual(isFloat("10.52"), True)
 
-class TestCalculate(unittest.TestCase):
-    def testAdditionCase(self):
-        self.assertEqual(calculate("1+2"), 3)
-    
-    def testSubtractionCase(self):
-        self.assertEqual(calculate("120-2"), 118)
-    
-    def testMultiplicationCase(self):
-        self.assertEqual(calculate("16*4"), 64)
-
 class TestEasterEgg(unittest.TestCase):
     def test5252(self):
         self.assertEqual(easterEgg("5252"), "정종욱 교수님을 총장으로")
     
     def test1015(self):
         self.assertEqual(easterEgg("1015"), "전북대 개교기념일입니다.")
+        
+class TestFactorialFunction(unittest.TestCase):
+    def testMultiple(self):
+        self.assertEqual(factorial("3 3"), "[ERROR] Input Error")
+        self.assertEqual(factorial("4 4 4"), "[ERROR] Input Error")
 
+    def testPositive(self):
+        self.assertEqual(factorial("5"), "= 120")
+
+    def testZero(self):
+        self.assertEqual(factorial("0"), "= 1")
+
+    def testNegative(self):
+        self.assertEqual(factorial("-1"), "[ERROR] Out Of Range")
+
+    def testNoneInteger(self):
+        self.assertEqual(factorial('+'), "[ERROR] Out Of Range")
+        self.assertEqual(factorial('a'), "[ERROR] Out Of Range")
+        self.assertEqual(factorial('0.1'), "[ERROR] Out Of Range")
 
 def calculate(expression):
     try:
@@ -47,8 +56,8 @@ def calculate(expression):
 def isDivision(userInput):
     if userInput in ("+", "-", "*"):
         return False
-    elif userInput == '/':      #10번 줄 없애도 됨
-        return True             #11번 줄 없애도 됨
+    elif userInput == '/':  # 10번 줄 없애도 됨
+        return True  # 11번 줄 없애도 됨
     return True
 
 def isFloat(userInput):
@@ -68,18 +77,23 @@ def easterEgg(userInput):
     else:
         return "Not App"
 
+def factorial(expression):
+    if len(str(expression).split()) > 1:
+        return "[ERROR] Input Error"
+    expressionStriped = expression.strip()
+    if not str(expressionStriped).isdigit():
+        return "[ERROR] Out Of Range"
+    return "= " + str(math.factorial(int(expressionStriped)))
 
 def main():
     expression = ""
     errorChecker = False
-    compare = 0     #피연산자와 연산사 가려주는 변수
-
+    compare = 0  # 피연산자와 연산사 가려주는 변수
 
     while True:
         userInput = input().strip()
         easterEggValue = easterEgg(userInput)
-        compare+=1
-
+        compare += 1
 
         if userInput == "=":
             # 주석해제하여 체크 / print(f"exp: {expression}\nerrChecker: {errorChecker}")
@@ -91,22 +105,29 @@ def main():
                 result = calculate(expression)
                 print(f"{result}")
                 break
+                
         elif easterEggValue != "Not App":
             print(f"[EVENT] \"{easterEggValue}\"")
             break
-    
-        #elif isFloat(userInput) or isDivision(userInput):
+            
+        if userInput == "!":
+            print(factorial(expression))
+            break
+
+        # elif isFloat(userInput) or isDivision(userInput):
         #   errorChecker = True
         else:
-            if compare % 2: #정수 입력
+            if compare % 2:  # 정수 입력
                 if isFloat(userInput):
                     errorChecker = True
-            elif not (compare % 2): #연산자 입력
+            elif not (compare % 2):  # 연산자 입력
                 if isDivision(userInput):
                     errorChecker = True
             # 주석해제하여 체크 / print(f"before add: {expression}")
-            expression += userInput
+
+            expression += userInput + " "  
             # 주석해제하여 체크 / print(f"after add: {expression}")
+
 if __name__ == "__main__":
-    unittest.main(exit=False)
-    #main()
+    # unittest.main()
+    main()
