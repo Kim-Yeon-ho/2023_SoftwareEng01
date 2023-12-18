@@ -7,14 +7,12 @@ def calculate(expression):
     except Exception as e:
         return f"Error: {e}"
 
-
 def isDivision(userInput):
     if userInput in ("+", "-", "*"):
         return False
     elif userInput == '/':  # 10번 줄 없애도 됨
         return True  # 11번 줄 없애도 됨
     return True
-
 
 def isFloat(userInput):
     if "." in userInput:
@@ -25,7 +23,6 @@ def isFloat(userInput):
             return False
     return False
 
-
 def easterEgg(userInput):
     if userInput == "5252":
         return "정종욱 교수님을 총장으로"
@@ -34,7 +31,6 @@ def easterEgg(userInput):
     else:
         return "Not App"
 
-
 def factorial(expression):
     if len(str(expression).split()) > 1:
         return "[ERROR] Input Error"
@@ -42,7 +38,6 @@ def factorial(expression):
     if not str(expressionStriped).isdigit():
         return "[ERROR] Out Of Range"
     return "=" + str(math.factorial(int(expressionStriped)))
-
 
 class TestFactorialFunction(unittest.TestCase):
     def testMultiple(self):
@@ -62,7 +57,6 @@ class TestFactorialFunction(unittest.TestCase):
         self.assertEqual(factorial('+'), "[ERROR] Out Of Range")
         self.assertEqual(factorial('a'), "[ERROR] Out Of Range")
         self.assertEqual(factorial('0.1'), "[ERROR] Out Of Range")
-
 
 def main():
     expression = ""
@@ -84,9 +78,11 @@ def main():
                 result = calculate(expression)
                 print(f"{result}")
                 break
+                
         elif easterEggValue != "Not App":
             print(f"[EVENT] \"{easterEggValue}\"")
             break
+            
         if userInput == "!":
             print(factorial(expression))
             break
@@ -101,10 +97,10 @@ def main():
                 if isDivision(userInput):
                     errorChecker = True
             # 주석해제하여 체크 / print(f"before add: {expression}")
+
             expression += userInput + " "  
             # 주석해제하여 체크 / print(f"after add: {expression}")
 
-
 if __name__ == "__main__":
-    unittest.main()
-    #main()
+    # unittest.main()
+    main()
