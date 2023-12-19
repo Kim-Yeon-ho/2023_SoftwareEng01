@@ -113,7 +113,6 @@ def main():
         if userInput == "!":
             print(factorial(expression))
             break
-
         else:
             if compare % 2:  # 정수 입력
                 if isFloat(userInput):
@@ -121,9 +120,8 @@ def main():
             elif not (compare % 2):  # 연산자 입력
                 if isDivision(userInput):
                     errorChecker = True
-
             expression += userInput + " "
 
 if __name__ == "__main__":
-    #unittest.main(exit=False)
+    unittest.main(exit=False)
     main()
