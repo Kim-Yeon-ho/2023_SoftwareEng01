@@ -1,6 +1,52 @@
 import unittest
 import math
 
+class TestOperation(unittest.TestCase):
+    def testAdditionCase(self):
+        self.assertEqual(isDivision("+"), False)
+    
+    def testSubtractionCase(self):
+        self.assertEqual(isDivision("-"), False)
+    
+    def testMultiplicationCase(self):
+        self.assertEqual(isDivision("*"), False)
+
+    def testDivisionCase(self):
+        self.assertEqual(isDivision("/"), True)
+
+class TestNumber(unittest.TestCase):
+    def testInteger(self):
+        self.assertEqual(isFloat("10"), False)
+    
+    def testFloat(self):
+        self.assertEqual(isFloat("10.52"), True)
+
+class TestEasterEgg(unittest.TestCase):
+    def test5252(self):
+        self.assertEqual(easterEgg("5252"), "정종욱 교수님을 총장으로")
+    
+    def test1015(self):
+        self.assertEqual(easterEgg("1015"), "전북대 개교기념일입니다.")
+        
+class TestFactorialFunction(unittest.TestCase):
+    def testMultiple(self):
+        self.assertEqual(factorial("3 3"), "[ERROR] Input Error")
+        self.assertEqual(factorial("4 4 4"), "[ERROR] Input Error")
+
+    def testPositive(self):
+        self.assertEqual(factorial("5"), "= 120")
+
+    def testZero(self):
+        self.assertEqual(factorial("0"), "= 1")
+
+    def testNegative(self):
+        self.assertEqual(factorial("-1"), "[ERROR] Out Of Range")
+
+    def testNoneInteger(self):
+        self.assertEqual(factorial('+'), "[ERROR] Out Of Range")
+        self.assertEqual(factorial('a'), "[ERROR] Out Of Range")
+        self.assertEqual(factorial('0.1'), "[ERROR] Out Of Range")
+
 def calculate(expression):
     try:
         return eval(expression)
@@ -37,26 +83,7 @@ def factorial(expression):
     expressionStriped = expression.strip()
     if not str(expressionStriped).isdigit():
         return "[ERROR] Out Of Range"
-    return "=" + str(math.factorial(int(expressionStriped)))
-
-class TestFactorialFunction(unittest.TestCase):
-    def testMultiple(self):
-        self.assertEqual(factorial("3 3"), "[ERROR] Input Error")
-        self.assertEqual(factorial("4 4 4"), "[ERROR] Input Error")
-
-    def testPositive(self):
-        self.assertEqual(factorial("5"), "=120")
-
-    def testZero(self):
-        self.assertEqual(factorial("0"), "=1")
-
-    def testNegative(self):
-        self.assertEqual(factorial("-1"), "[ERROR] Out Of Range")
-
-    def testNoneInteger(self):
-        self.assertEqual(factorial('+'), "[ERROR] Out Of Range")
-        self.assertEqual(factorial('a'), "[ERROR] Out Of Range")
-        self.assertEqual(factorial('0.1'), "[ERROR] Out Of Range")
+    return "= " + str(math.factorial(int(expressionStriped)))
 
 def main():
     expression = ""
